@@ -1,17 +1,27 @@
 package com.barath.joblisting.model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.util.Arrays;
 
 @Document(collection = "jobpost")
 public class Post {
+    @Id
+    private String id;  // Added this field for MongoDB ID
     private String profile;
     private String desc;
     private int exp;
-    private String techs[];
+    private String[] techs;
 
     public Post() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getProfile() {
@@ -49,7 +59,8 @@ public class Post {
     @Override
     public String toString() {
         return "Post{" +
-                "profile='" + profile + '\'' +
+                "id='" + id + '\'' +
+                ", profile='" + profile + '\'' +
                 ", desc='" + desc + '\'' +
                 ", exp=" + exp +
                 ", techs=" + Arrays.toString(techs) +
